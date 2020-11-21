@@ -1,0 +1,21 @@
+service: api-server
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-2
+  apiKeys:
+    - api-key-1
+
+functions:
+  api_server:
+    handler: index.handler
+    description: "API server"
+    timeout: 30 # in seconds, default is 6
+    events:
+      - http:
+          method: any
+          path: /v1/{proxy+}
+          cors: true
+          private: true
