@@ -1,5 +1,4 @@
-import { SET_USER, SET_ERRORS, LOADING_UI, CLEAR_ERRORS, SET_UNAUTHENTICATED, LOADING_USER } from '../types';
-import axios from 'axios';
+import { SET_USER, SET_ERRORS, LOADING_UI, CLEAR_ERRORS } from '../types';
 import { createUser } from '../../services/apiService'
 import { FormFields } from '../../pages/Signup';
 

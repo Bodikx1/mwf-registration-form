@@ -1,9 +1,8 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 
 import ButtonGroup from '@atlaskit/button/button-group';
 import LoadingButton from '@atlaskit/button/loading-button';
-import Button from '@atlaskit/button/standard-button';
 import { Checkbox } from '@atlaskit/checkbox';
 import TextField from '@atlaskit/textfield';
 
@@ -12,7 +11,6 @@ import Form, {
   Field,
   FormFooter,
   HelperMessage,
-  ValidMessage,
 } from '@atlaskit/form';
 
 import { getUserByEmail } from '../services/apiService';
@@ -46,7 +44,7 @@ function Signup(props: any) {
   };
 
   const onSubmitHandler = async (data: FormFields): Promise<any> => {
-    const { useremail, username, password, passwordConfirm } = data;
+    const { useremail, password, passwordConfirm } = data;
 
     if (nextStep && password === passwordConfirm) {
       props.signUpUser(data, props.history);

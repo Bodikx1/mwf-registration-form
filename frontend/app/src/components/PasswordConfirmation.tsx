@@ -2,7 +2,7 @@
 import React, { Fragment, useState } from 'react';
 import TextField from '@atlaskit/textfield';
 
-import Form, {
+import {
   ErrorMessage,
   Field,
   HelperMessage,
