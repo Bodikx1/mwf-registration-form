@@ -26,6 +26,6 @@ then
   aws s3 rm s3://$AWS_BUCKET --recursive --profile $AWS_PROFILE
   echo "Done."
   echo "Pushing new content to the $AWS_BUCKET S3 bucket..."
-  aws s3 sync $LOCAL_DIR s3://$AWS_BUCKET --include '*' --profile $AWS_PROFILE
+  aws s3 sync $LOCAL_DIR s3://$AWS_BUCKET --include '*' --profile $AWS_PROFILE --acl public-read
   echo "Done."
 fi
