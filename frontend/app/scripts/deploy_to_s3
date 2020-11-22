@@ -1,0 +1,31 @@
+#!/bin/bash
+
+AWS_BUCKET=mwf-registration-form
+AWS_PROFILE=bodikx
+
+LOCAL_DIR=./build
+
+command -v aws >/dev/null 2>&1 || { echo >&2 "aws is not installed.  Aborting."; exit 1; }
+
+echo ""
+echo "You are about to deploy"
+echo "     $LOCAL_DIR"
+echo ""
+echo "To this AWS S3 bucket:"
+echo "     $AWS_BUCKET"
+echo ""
+echo "Using this AWS Profile:"
+echo "     $AWS_PROFILE"
+echo ""
+echo "Does this look correct? (y/N)"
+read YESORNO;
+
+if [ "$YESORNO" = "y" -o "$YESORNO" = "Y" ]
+then
+  echo "Clearing out all old content from the $AWS_BUCKET S3 bucket..."
+  aws s3 rm s3://$AWS_BUCKET --recursive --profile $AWS_PROFILE
+  echo "Done."
+  echo "Pushing new content to the $AWS_BUCKET S3 bucket..."
+  aws s3 sync $LOCAL_DIR s3://$AWS_BUCKET --include '*' --profile $AWS_PROFILE
+  echo "Done."
+fi
