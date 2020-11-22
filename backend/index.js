@@ -5,8 +5,11 @@ const AWS = require('aws-sdk')
 const bcrypt = require('bcryptjs')
 
 const app = express()
-const { Router } = require('express')
+const cors = require('cors')
 
+app.use(cors())
+
+const { Router } = require('express')
 const mainRouter = Router()
 
 const USERS_TABLE = process.env.USERS_TABLE

@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+//redux stuff
+import { Provider } from 'react-redux';
+import store from './redux/store';
+// pages & components
+import Signup from './pages/Signup';
+import Main from './pages/Main';
+import GuestRoute from './hoc/GuestRoute';
+import PrivateRoute from './hoc/PrivateRoute';
+// styles
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <PrivateRoute
+              exact
+              path='/'
+              component={Main} />
+            <GuestRoute
+              exact
+              path='/signup'
+              component={Signup} />
+          </Switch>
+        </Router>
+      </Provider>
     </div>
-  );
+  )
 }
 
 export default App;

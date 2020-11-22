@@ -2,7 +2,6 @@ import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER } from '
 
 const initialState = {
   authenticated: false,
-  credentials: {},
   loading: false
 }
 
@@ -10,7 +9,7 @@ export default function (state = initialState, action: any) {
   switch (action.type) {
     case SET_AUTHENTICATED:
       return {
-        …state,
+        ...state,
         authenticated: true
       };
     case SET_UNAUTHENTICATED:
@@ -19,11 +18,11 @@ export default function (state = initialState, action: any) {
       return {
         authenticated: true,
         loading: false,
-        …action.payload
+        ...action.payload
       };
     case LOADING_USER:
       return {
-        …state,
+        ...state,
         loading: true
       };
     default:
